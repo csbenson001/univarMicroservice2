@@ -11,18 +11,28 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.json());
 app.use(express.urlencoded());
 
+// just dummy / test methods.
+app.get('/', (req, res) => {
+    res.send('hey, whats up!');
+});
+
+app.post('/', (req, res) => {
+    res.send('were watching!');
+});
+
+// development only
+if ('development' == app.get('env')) {
+  //app.use(express.errorHandler());
+}
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 })
 
+// No more of this stuff needed anymore... but kept here for the Avengers reference...
 /*
 var MongoClient = require('mongodb').MongoClient;
-
-
 const assert = require('assert');
-
-
-
 
 // variables, move to envt file
 var url = process.env.MONGODB_CONNECTION_STRING;
@@ -33,16 +43,6 @@ const dbName = process.env.DB_NAME;
 if ('development' == app.get('env')) {
   //app.use(express.errorHandler());
 }
-
-
-app.get('/', (req, res) => {
-    res.send('hey, whats up!');
-});
-
-app.post('/', (req, res) => {
-    res.send('were watching!');
-});
-
 
 // create a function for each microservice.
 // we will move these to separate files so they can be worked / supported independently.
