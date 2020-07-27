@@ -1,24 +1,36 @@
 {
   "name": "univarmicroservice2",
   "version": "1.0.0",
-  "description": "univar microservice example",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon --exec babel-node src/index.js",
+    "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/csbenson001/univarMicroservice2.git"
+    "url": "git+https://github.com/mingxhzhu/univarMicroservice2.git"
   },
-  "author": "chris benson",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/csbenson001/univarMicroservice2/issues"
+    "url": "https://github.com/mingxhzhu/univarMicroservice2/issues"
   },
-  "homepage": "https://github.com/csbenson001/univarMicroservice2#readme",
+  "homepage": "https://github.com/mingxhzhu/univarMicroservice2#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "nodemon": "^2.0.4"
+  },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "request": "^2.88.2"
+    "express-async-handler": "^1.1.4",
+    "express-validator": "^6.6.0",
+    "mongodb": "^3.5.9"
   }
 }

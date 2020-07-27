@@ -1,17 +1,25 @@
 var express = require('express');
 var app = express();
-const dotenv = require('dotenv');
-dotenv.config();
-
-const routes = require('./api/routes');
-routes(app);
-
+var MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
 app.set('port', (process.env.PORT || 5050));
 app.use(express.json({limit: '50mb'}));
+
 app.use(express.json());
 app.use(express.urlencoded());
 
-// just dummy / test methods.
+
+// variables, move to envt file
+var url = 'mongodb://user90bd44:821bc8LIkumxQc01be9@cluster-pgrs1001-0-us-east-1-scalabledbs.cloudstrap.io:29001,cluster-pgrs1001-1-us-east-1-scalabledbs.cloudstrap.io:29001,cluster-pgrs1001-2-us-east-1-scalabledbs.cloudstrap.io:29001/pg-app-2-us-u8e29vmtak05z6erwl2vcuhukq5trh?replicaSet=pgrs1001&ssl=true';
+// Database Name
+const dbName = 'pg-app-2-us-u8e29vmtak05z6erwl2vcuhukq5trh';
+
+// development only
+if ('development' == app.get('env')) {
+  //app.use(express.errorHandler());
+}
+
+
 app.get('/', (req, res) => {
     res.send('hey, whats up!');
 });
@@ -20,29 +28,6 @@ app.post('/', (req, res) => {
     res.send('were watching!');
 });
 
-// development only
-if ('development' == app.get('env')) {
-  //app.use(express.errorHandler());
-}
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-})
-
-// No more of this stuff needed anymore... but kept here for the Avengers reference...
-/*
-var MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-
-// variables, move to envt file
-var url = process.env.MONGODB_CONNECTION_STRING;
-// Database Name
-const dbName = process.env.DB_NAME;
-
-// development only
-if ('development' == app.get('env')) {
-  //app.use(express.errorHandler());
-}
 
 // create a function for each microservice.
 // we will move these to separate files so they can be worked / supported independently.
@@ -111,4 +96,4 @@ app.get('/CustomerRead', async function(req, res) {
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
-});*/
+});
