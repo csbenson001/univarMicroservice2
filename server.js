@@ -1,18 +1,33 @@
 var express = require('express');
 var app = express();
-var MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+const dotenv = require('dotenv');
+dotenv.config();
+
+const routes = require('./api/routes');
+routes(app);
+
 app.set('port', (process.env.PORT || 5050));
 app.use(express.json({limit: '50mb'}));
-
 app.use(express.json());
 app.use(express.urlencoded());
 
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+})
+
+/*
+var MongoClient = require('mongodb').MongoClient;
+
+
+const assert = require('assert');
+
+
+
 
 // variables, move to envt file
-var url = 'mongodb://user90bd44:821bc8LIkumxQc01be9@cluster-pgrs1001-0-us-east-1-scalabledbs.cloudstrap.io:29001,cluster-pgrs1001-1-us-east-1-scalabledbs.cloudstrap.io:29001,cluster-pgrs1001-2-us-east-1-scalabledbs.cloudstrap.io:29001/pg-app-2-us-u8e29vmtak05z6erwl2vcuhukq5trh?replicaSet=pgrs1001&ssl=true';
+var url = process.env.MONGODB_CONNECTION_STRING;
 // Database Name
-const dbName = 'pg-app-2-us-u8e29vmtak05z6erwl2vcuhukq5trh';
+const dbName = process.env.DB_NAME;
 
 // development only
 if ('development' == app.get('env')) {
@@ -96,4 +111,4 @@ app.get('/CustomerRead', async function(req, res) {
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
-});
+});*/

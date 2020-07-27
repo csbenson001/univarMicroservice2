@@ -1,0 +1,24 @@
+{
+  "name": "univarmicroservice2",
+  "version": "1.0.0",
+  "description": "univar microservice example",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csbenson001/univarMicroservice2.git"
+  },
+  "author": "chris benson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csbenson001/univarMicroservice2/issues"
+  },
+  "homepage": "https://github.com/csbenson001/univarMicroservice2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
+}
